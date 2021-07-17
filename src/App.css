@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+.App-div{
+  
+  width: 100px;
+  background-color: #61dafb;
+}
