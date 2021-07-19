@@ -1,12 +1,15 @@
 import React from "react";
 
 
-export const Message = (props) => {
-    const { count } = props;
+const Message = (props) => {
+    const { messageslist } = props;
   
     return (
-      <div className="App-div">
-        <p> {count} </p>
+      <div className="messages">
+         { messageslist.map((message) => <div className="message">{message.author} : {message.text}</div>) }
       </div>
     );
   };
+
+
+export default Message ;

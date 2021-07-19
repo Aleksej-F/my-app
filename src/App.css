@@ -39,5 +39,17 @@
 .App-div{
   
   width: 200px;
-  background-color: #61dcfb;
+  background-color: #b8e7f3;
 }
+
+.messages {
+  margin-top: 20px;
+  background-color: #a5ddeb;
+  width: 50%;
+  
+}
+.message{
+  text-align: left;
+
+}
+
