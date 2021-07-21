@@ -44,12 +44,34 @@
 
 .messages {
   margin-top: 20px;
-  background-color: #a5ddeb;
+  background-color: #dfeaec;
   width: 50%;
   
 }
 .message{
+  width: 96%;
+  margin: 5px auto 5px auto;
+  display: flex;
+}
+.message_bot{
+  justify-content: flex-end;
+  right: 0;
+}
+.message_text{
   text-align: left;
-
+  background-color: #beedf5;
+  width: 50%;
+  border: 2px solid #beedf5;
+  border-radius: 12px;
+  margin: 5px;
+  color: rgb(80, 78, 78);
 }
 
+
+.input_button{
+  background-color: #b3dae4;
+}
+.input_button:hover{
+  background-color: #7c959b;
+  cursor: pointer;
+}

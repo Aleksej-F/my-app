@@ -14,9 +14,8 @@ function Counter(props) {
        
           <p>Введите сообщение</p>
           <input type="text" value={value} onChange={handleChange} />
-          
-          
-          <button onClick={()=> send({value:value, name:'Anrej'})}>SEND</button>
+                    
+          <button className="input_button" onClick={()=> send({value:value, name:'Anrej'})}>SEND</button>
              
        
       </div>

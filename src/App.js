@@ -27,8 +27,7 @@ export default function App() {
         }
     }
     
-    
-  }, [messageslist]);
+  },[messageslist]);
 
 
    return (
@@ -36,6 +35,7 @@ export default function App() {
       <header className="App-header">
              
         <Input send={send}/>
+
         <Message messageslist={messageslist}/>
          
       </header>
