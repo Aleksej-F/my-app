@@ -2,7 +2,7 @@ import './App.css';
 
 import React, { useState, useEffect } from "react";
 import Input  from './components/input';
-import Message  from './components/message';
+import MessageList  from './components/messageList';
 
 export default function App() {
   const [messageslist, setMessageslist] = useState([]);
@@ -36,7 +36,7 @@ export default function App() {
              
         <Input send={send}/>
 
-        <Message messageslist={messageslist}/>
+        <MessageList messageslist={messageslist}/>
          
       </header>
     </div>

@@ -60,13 +60,16 @@
 .message_text{
   text-align: left;
   background-color: #beedf5;
-  width: 50%;
   border: 2px solid #beedf5;
   border-radius: 12px;
   margin: 5px;
+  max-width: 96%;
   color: rgb(80, 78, 78);
 }
-
+.message_text_bot{
+  background-color: #c69ff3;
+  border: 2px solid #c69ff3;
+}
 
 .input_button{
   background-color: #b3dae4;

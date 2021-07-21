@@ -5,44 +5,21 @@ const Message = (props) => {
     const { messageslist } = props;
   
     const mess = messageslist.map((message, index ) => {
-          
-          if (message.author === 'Bot') {
-            return (
-              <div 
-                className="message  message_bot"
-                key={index}
-              >
-                <div className="message_text">
-                  {message.author} : {message.text}
-                </div>
-              </div>
-            )
-            
-          } else {
-            return (
-              <div className="message "
-                key={index}
-              >
-                <div className="message_text"> 
-                  {message.author} : {message.text}
-                </div>
-              </div>
-            )
-          }
-            
-        
-        
-        
-        })
+   
+      return (
+      <div 
+        className = {`message ${message.author === 'Bot' ? 'message_bot' : ''}`}
+        key = {index}
+      >
+        <div className = {`message_text ${message.author === 'Bot' ? 'message_text_bot' : ''}`}>
+          {message.author} : {message.text}
+        </div>
+    </div>
+    )}) 
+    
+   return ( mess )
 
-
-
-    return (
-      <div className="messages">
-         { mess} 
-      </div>
-    );
-  };
+};
 
 
 export default Message ;
