@@ -3,9 +3,19 @@ import './App.css';
 import React, { useState, useEffect } from "react";
 import Input  from './components/input';
 import MessageList  from './components/messageList';
+import faker from "faker"
+import { List, Grid, Paper, ListItem, ListItemAvatar, ListItemText, Avatar} from '@material-ui/core';
+
+const chatlist = Array.from( {length:10}).map(() => ({
+  id: faker.datatype.uuid(),
+  avatar: faker.image.avatar(),
+  name: faker.name.findName()
+}))
+
 
 export default function App() {
   const [messageslist, setMessageslist] = useState([]);
+  
 
   const send = function ({value, name}) {
     
@@ -32,13 +42,31 @@ export default function App() {
 
    return (
     <div className="App">
-      <header className="App-header">
-             
-        <Input send={send}/>
+     <Grid container spacing={3}>
+     <Grid item xs={3}>
+        <Paper>
+          <List>
+            {
+              chatlist.map((item) => (<ListItem key={item.id}>
+                <ListItemAvatar >
+                  <Avatar alt={item.name} src={item.avatar}/>
+                </ListItemAvatar>
+                <ListItemText primary={item.name}/>
+              </ListItem>))
+            }
 
-        <MessageList messageslist={messageslist}/>
-         
-      </header>
+          </List>
+        </Paper>
+     </Grid>
+        
+        
+
+       
+      <Grid item xs={9}>
+        <MessageList messageslist={messageslist}/>   
+        <Input send={send}/>
+      </Grid>  
+      </Grid>
     </div>
   );
 }

@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #8a9fc9;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -45,11 +45,12 @@
 .messages {
   margin-top: 20px;
   background-color: #dfeaec;
-  width: 50%;
+  width: 95%;
+  height: 80vh;
   
 }
 .message{
-  width: 96%;
+  width: 90%;
   margin: 5px auto 5px auto;
   display: flex;
 }
