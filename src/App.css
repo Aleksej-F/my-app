@@ -94,3 +94,8 @@
   background-color: #7c959b;
   cursor: pointer;
 }
+.chat:hover{
+  background-color: #afc9cf;
+  cursor: pointer;
+  transition: all 0.7s ease-out;
+}

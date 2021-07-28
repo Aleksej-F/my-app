@@ -1,6 +1,6 @@
 import './App.css';
 
-import React from "react";
+import React,{ useState, }  from "react";
 
 import Chat  from './components/chat';
 import Home  from './components/home';
@@ -10,14 +10,24 @@ import {
   Switch,
   Route,
   Link,
-  useParams
+  
 } from "react-router-dom";
-
+import faker from "faker"
+const chatlist = Array.from( {length:10}).map(() => ({
+  id: faker.datatype.uuid(),
+  avatar: faker.image.avatar(),
+  name: faker.name.findName(),
+  messageslist: Array.from( {length:5}).map(() => ({
+      id: faker.datatype.uuid(),
+      author: faker.name.findName(), 
+      text: faker.lorem.text()
+  }))
+}))
 
 
 
 export default function App() {
- 
+  
    return (
     <div className="App">
      
@@ -46,10 +56,9 @@ export default function App() {
           </Route>
    
           <Route
-            
-            path="/chats/:chatId"
+            path="/chats/:chatId?"
           >
-            <Chat />
+            <Chat chatlist={chatlist}/>
           </Route>
 
           <Route exact path="/">

@@ -9,7 +9,7 @@ const Message = (props) => {
       return (
       <div 
         className = {`message ${message.author === 'Bot' ? 'message_bot' : ''}`}
-        key = {index}
+        key = {message.id}
       >
         <div className = {`message_text ${message.author === 'Bot' ? 'message_text_bot' : ''}`}>
           {message.author} : {message.text}

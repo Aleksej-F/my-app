@@ -3,33 +3,32 @@ import MessageList  from './messageList';
 import ChatList  from './chatList';
 import { Grid, Paper,} from '@material-ui/core';
 import React, { useState, useEffect } from "react";
-import faker from "faker"
+
 import {
    
     useParams
   } from "react-router-dom";
-const chatlist = Array.from( {length:10}).map(() => ({
-    id: faker.datatype.uuid(),
-    avatar: faker.image.avatar(),
-    name: faker.name.findName(),
-    messageslist: Array.from( {length:5}).map(() => ({
-        author: faker.name.findName(), 
-        text: faker.lorem.text()
-    }))
-}))
+
+
 
 
 
 const  Chat  =  (props) => {
     const  {chatId}  = useParams();
-
-    console.log (parseInt(chatId))
+    const {chatlist} =props;
+    const par = parseInt(chatId)>=chatlist.length ? 1 : parseInt(chatId)  
+    const [messageslist, setMessageslist] = useState(
+        (!chatId || !chatlist[chatId])?[]:(chatlist[par].messageslist)
+        );
     
-    const par = parseInt(chatId)>=chatlist.length ? 1 : parseInt(chatId)
+    console.log ('chatId - ' + chatId + '     '+  par)
     
-    const [messageslist, setMessageslist] = useState(chatlist[par].messageslist);
+    console.log ('messageslist - ' + messageslist)
     
-    console.log (messageslist)
+    const setMessagesList = function (key) {
+        setMessageslist(chatlist[key].messageslist) 
+    }
+    
 
     const send = function ({value, name}) {
     
@@ -53,22 +52,22 @@ const  Chat  =  (props) => {
     
     },[messageslist]);
 
-    
+    /*
     if (parseInt(chatId) >= chatlist.length) {
         return null
-    } 
+    } */
 
     return (
 
     <Grid container spacing={3}>
         <Grid item xs={3}>
             <Paper>
-                <ChatList chatlist={chatlist}/>
+                <ChatList chatlist={chatlist} setMessagesList = {setMessagesList }/>
             </Paper>
         </Grid>
         <Grid item xs={9}>
             <MessageList messageslist={messageslist}/>   
-            <Input send={send}/>
+            {(!chatId || !chatlist[chatId])?'':<Input send={send}/>}
         </Grid>  
     </Grid>
     );
