@@ -1,12 +1,48 @@
 import React from "react";
 
 
-export const Message = (props) => {
-    const { count } = props;
+const Message = (props) => {
+    const { messageslist } = props;
   
+    const mess = messageslist.map((message, index ) => {
+          
+          if (message.author === 'Bot') {
+            return (
+              <div 
+                className="message  message_bot"
+                key={index}
+              >
+                <div className="message_text">
+                  {message.author} : {message.text}
+                </div>
+              </div>
+            )
+            
+          } else {
+            return (
+              <div className="message "
+                key={index}
+              >
+                <div className="message_text"> 
+                  {message.author} : {message.text}
+                </div>
+              </div>
+            )
+          }
+            
+        
+        
+        
+        })
+
+
+
     return (
-      <div className="App-div">
-        <p> {count} </p>
+      <div className="messages">
+         { mess} 
       </div>
     );
   };
+
+
+export default Message ;
