@@ -41,12 +41,27 @@
   width: 200px;
   background-color: #b8e7f3;
 }
+.header ul {
+  display: flex;
+  justify-content: center;
+}
+.header ul li{
+  list-style-type: none;
+  text-decoration: none;
+  padding: 10px;
+
+}
+.header ul li:hover {
+  padding-bottom: 3px;
+  transform: translateY(-3px);
+  transition: all 0.5s ease-out;
+}
 
 .messages {
   margin-top: 20px;
   background-color: #dfeaec;
   width: 95%;
-  height: 80vh;
+  height: 75vh;
   
 }
 .message{
@@ -78,4 +93,9 @@
 .input_button:hover{
   background-color: #7c959b;
   cursor: pointer;
+}
+.chat:hover{
+  background-color: #afc9cf;
+  cursor: pointer;
+  transition: all 0.7s ease-out;
 }

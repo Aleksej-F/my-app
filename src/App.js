@@ -1,72 +1,79 @@
 import './App.css';
 
-import React, { useState, useEffect } from "react";
-import Input  from './components/input';
-import MessageList  from './components/messageList';
-import faker from "faker"
-import { List, Grid, Paper, ListItem, ListItemAvatar, ListItemText, Avatar} from '@material-ui/core';
+import React,{ useState, }  from "react";
 
+import Chat  from './components/chat';
+import Home  from './components/home';
+import Profile from './components/profile';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Link,
+  
+} from "react-router-dom";
+import faker from "faker"
 const chatlist = Array.from( {length:10}).map(() => ({
   id: faker.datatype.uuid(),
   avatar: faker.image.avatar(),
-  name: faker.name.findName()
+  name: faker.name.findName(),
+  messageslist: Array.from( {length:5}).map(() => ({
+      id: faker.datatype.uuid(),
+      author: faker.name.findName(), 
+      text: faker.lorem.text()
+  }))
 }))
 
 
+
 export default function App() {
-  const [messageslist, setMessageslist] = useState([]);
   
-
-  const send = function ({value, name}) {
-    
-    let message = { author: name, text: value}
-    setMessageslist(messageslist.concat(message))
-    
-  }; 
-  
-  useEffect(() => {
-    
-    if (messageslist.length > 0) {
-      
-        if (messageslist[messageslist.length-1].author !== 'Bot'){
-            let mes = {name: 'Bot',value: 'привет'};
-            setTimeout(() => {
-              send (mes)
-            }, 2000);
-            
-        }
-    }
-    
-  },[messageslist]);
-
-
    return (
     <div className="App">
-     <Grid container spacing={3}>
-     <Grid item xs={3}>
-        <Paper>
-          <List>
-            {
-              chatlist.map((item) => (<ListItem key={item.id}>
-                <ListItemAvatar >
-                  <Avatar alt={item.name} src={item.avatar}/>
-                </ListItemAvatar>
-                <ListItemText primary={item.name}/>
-              </ListItem>))
-            }
+     
+     <BrowserRouter>
+        <header className="header">
+            <ul>
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
 
-          </List>
-        </Paper>
-     </Grid>
-        
-        
+              <li>
+                <Link to="/chats">Chats</Link>
+              </li>
 
-       
-      <Grid item xs={9}>
-        <MessageList messageslist={messageslist}/>   
-        <Input send={send}/>
-      </Grid>  
-      </Grid>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+            </ul>
+        </header>
+
+         
+        <Switch>
+   
+          <Route path="/profile">
+             <Profile />
+          </Route>
+   
+          <Route
+            path="/chats/:chatId?"
+          >
+            <Chat chatlist={chatlist}/>
+          </Route>
+
+          <Route exact path="/">
+            <Home />
+          </Route>
+
+          <Route>
+            <h3>Page not found</h3>
+          </Route>
+
+   
+        </Switch>
+   
+      </BrowserRouter>
+     
     </div>
   );
 }
