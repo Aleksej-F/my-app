@@ -4,7 +4,7 @@ import React from "react";
 const Message = (props) => {
     const { messageslist } = props;
   
-    const mess = messageslist.map((message, index ) => {
+    const mess = messageslist.map((message ) => {
    
       return (
       <div 

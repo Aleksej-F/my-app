@@ -3,14 +3,16 @@ import { List, ListItem, ListItemAvatar, ListItemText, Avatar} from '@material-u
 import {Link} from "react-router-dom";            
               
               
-const  Chatlist  =  (props) => {
-    const { chatlist, setMessagesList } = props; 
+export default function Chatlist (props) {
+    const { chatlist, setMessag  } = props; 
     return (
         <List>
             {
             chatlist.map((item, key) => (
-            <Link to={`/chats/${key}`}>
-                <ListItem key={item.id} className ='chat' onClick={setMessagesList(key)}>
+            <Link to={`/chats/${key}`} onClick={()=> {
+                setMessag(key)
+              }}>
+                <ListItem key={item.id} className ='chat' >
                     <ListItemAvatar >
                         <Avatar alt={item.name} src={item.avatar}/>
                     </ListItemAvatar>
@@ -23,4 +25,3 @@ const  Chatlist  =  (props) => {
         </List>
     )};
 
-export default Chatlist

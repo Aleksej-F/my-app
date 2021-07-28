@@ -11,32 +11,37 @@ import {
 
 
 
-
-
 const  Chat  =  (props) => {
     const  {chatId}  = useParams();
-    const {chatlist} =props;
+    const {chatlist, send} =props;
     const par = parseInt(chatId)>=chatlist.length ? 1 : parseInt(chatId)  
+    
     const [messageslist, setMessageslist] = useState(
         (!chatId || !chatlist[chatId])?[]:(chatlist[par].messageslist)
         );
     
     console.log ('chatId - ' + chatId + '     '+  par)
     
-    console.log ('messageslist - ' + messageslist)
+    console.log ('messageslist - ' )
+
+    console.log (messageslist)
     
-    const setMessagesList = function (key) {
+    //console.log("chatlist[par].messageslist   " + chatlist[par].messageslist)
+
+    
+    const setMessag = function (key) {
         setMessageslist(chatlist[key].messageslist) 
+        console.log ('messageslistсдшс - ' + messageslist)
     }
     
-
+/*
     const send = function ({value, name}) {
     
-        let message = { author: name, text: value}
+        let message = { author: name, text: value, id: faker.datatype.uuid(),}
         setMessageslist(messageslist.concat(message))
     
     }; 
-  
+  */
     useEffect(() => {
     
         if (messageslist.length > 5) {
@@ -52,22 +57,21 @@ const  Chat  =  (props) => {
     
     },[messageslist]);
 
-    /*
-    if (parseInt(chatId) >= chatlist.length) {
-        return null
-    } */
-
+   
     return (
 
     <Grid container spacing={3}>
         <Grid item xs={3}>
             <Paper>
-                <ChatList chatlist={chatlist} setMessagesList = {setMessagesList }/>
+                <ChatList chatlist={chatlist} setMessag={setMessag}/>
             </Paper>
         </Grid>
         <Grid item xs={9}>
             <MessageList messageslist={messageslist}/>   
-            {(!chatId || !chatlist[chatId])?'':<Input send={send}/>}
+            {(!chatId || !chatlist[chatId])?'':<Input send={
+                ({name, value})=> {
+                send({name:name, value:value, key:par})
+                }}/>}
         </Grid>  
     </Grid>
     );

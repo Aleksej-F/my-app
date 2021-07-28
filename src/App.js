@@ -1,6 +1,6 @@
 import './App.css';
 
-import React,{ useState, }  from "react";
+import React,{ useState, useEffect}  from "react";
 
 import Chat  from './components/chat';
 import Home  from './components/home';
@@ -13,7 +13,8 @@ import {
   
 } from "react-router-dom";
 import faker from "faker"
-const chatlist = Array.from( {length:10}).map(() => ({
+
+let list = Array.from( {length:10}).map(() => ({
   id: faker.datatype.uuid(),
   avatar: faker.image.avatar(),
   name: faker.name.findName(),
@@ -27,7 +28,22 @@ const chatlist = Array.from( {length:10}).map(() => ({
 
 
 export default function App() {
+  const [chatlist, setChatlist] = useState(list)
   
+  const send = function ({key, value, name}) {
+    
+    let message = { author: name, text: value, id: faker.datatype.uuid(),}
+    console.log({key, value, name})
+    console.log ("message -  "+ key)
+    console.log ( message)
+    setChatlist(chatlist[key].messageslist.concat(message))
+    console.log ( chatlist[key].messageslist)
+
+    
+}; 
+ 
+
+
    return (
     <div className="App">
      
@@ -35,16 +51,17 @@ export default function App() {
         <header className="header">
             <ul>
               <li>
-                <Link to="/profile">Profile</Link>
+                <Link to="/">Home</Link>
               </li>
+              
 
               <li>
                 <Link to="/chats">Chats</Link>
               </li>
-
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/profile">Profile</Link>
               </li>
+              
             </ul>
         </header>
 
@@ -58,7 +75,7 @@ export default function App() {
           <Route
             path="/chats/:chatId?"
           >
-            <Chat chatlist={chatlist}/>
+            <Chat chatlist={chatlist} send={send}/>
           </Route>
 
           <Route exact path="/">
