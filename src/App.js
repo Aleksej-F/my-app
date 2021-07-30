@@ -18,6 +18,7 @@ let list = Array.from( {length:10}).map(() => ({
   id: faker.datatype.uuid(),
   avatar: faker.image.avatar(),
   name: faker.name.findName(),
+  priz: false,
   messageslist: Array.from( {length:5}).map(() => ({
       id: faker.datatype.uuid(),
       author: faker.name.findName(), 
@@ -30,20 +31,30 @@ let list = Array.from( {length:10}).map(() => ({
 export default function App() {
   const [chatlist, setChatlist] = useState(list)
   
-  const send = function ({key, value, name}) {
-    
-    let message = { author: name, text: value, id: faker.datatype.uuid(),}
-    console.log({key, value, name})
-    console.log ("message -  "+ key)
-    console.log ( message)
-    setChatlist(chatlist[key].messageslist.concat(message))
-    console.log ( chatlist[key].messageslist)
-
-    
-}; 
- 
-
-
+  const sendi = function ({message,key}) {
+    list[key].messageslist.push(message)
+    setChatlist(list)
+  }; 
+  const deleteChat = function (keyi) {
+    list.splice(keyi, 1)
+    setChatlist(list)  
+  }
+  
+  const plusChat = function () {
+   
+    list = list.concat({
+      id: faker.datatype.uuid(),
+      avatar: faker.image.avatar(),
+      name: faker.name.findName(),
+      priz: false,
+      messageslist: Array.from( {length:5}).map(() => ({
+          id: faker.datatype.uuid(),
+          author: faker.name.findName(), 
+          text: faker.lorem.text()
+      }))
+    })  
+    setChatlist(list) 
+  }
    return (
     <div className="App">
      
@@ -75,7 +86,7 @@ export default function App() {
           <Route
             path="/chats/:chatId?"
           >
-            <Chat chatlist={chatlist} send={send}/>
+            <Chat chatlist={chatlist} sendi={sendi} deleteChat={deleteChat} plusChat={plusChat}/>
           </Route>
 
           <Route exact path="/">

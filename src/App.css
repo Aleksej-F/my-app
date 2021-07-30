@@ -62,7 +62,7 @@
   background-color: #dfeaec;
   width: 95%;
   height: 75vh;
-  
+  overflow-y:scroll;
 }
 .message{
   width: 90%;
@@ -91,11 +91,20 @@
   background-color: #b3dae4;
 }
 .input_button:hover{
-  background-color: #7c959b;
+  background-color: #cfe8ee;
   cursor: pointer;
 }
 .chat:hover{
   background-color: #afc9cf;
   cursor: pointer;
   transition: all 0.7s ease-out;
+}
+
+.active{
+  background-color: #88e995;
+ 
+}
+
+.contMess{
+ 
 }
