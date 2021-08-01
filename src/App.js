@@ -1,18 +1,12 @@
 import './App.css';
-
-import React,{ useState, useEffect}  from "react";
-
+import React,{ useState}  from "react";
 import Chat  from './components/chat';
 import Home  from './components/home';
 import Profile from './components/profile';
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  Link,
-  
-} from "react-router-dom";
+import {BrowserRouter,Switch,Route,Link} from "react-router-dom";
 import faker from "faker"
+
+
 
 let list = Array.from( {length:10}).map(() => ({
   id: faker.datatype.uuid(),
@@ -35,13 +29,13 @@ export default function App() {
     list[key].messageslist.push(message)
     setChatlist(list)
   }; 
+
   const deleteChat = function (keyi) {
     list.splice(keyi, 1)
     setChatlist(list)  
   }
   
   const plusChat = function () {
-   
     list = list.concat({
       id: faker.datatype.uuid(),
       avatar: faker.image.avatar(),

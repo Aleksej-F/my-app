@@ -35,14 +35,12 @@ function Counter(props) {
      //<input type="text" value={value} onChange={handleChange} />
     return (
       <div>
-       
-          
           <Input 
-            
             placeholder="Введите сообщение" 
             inputProps={{ 'aria-label':'description'}} 
             inputRef={inputRef}
-            value={value} onChange={handleChange}/>
+            value={value} onChange={handleChange}
+          />
            
           <Button
             variant="contained"
