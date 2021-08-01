@@ -5,8 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { createSaveProfileAction } from "../store/profile";
 
 const Profile = (props) => {
+  
   const profile = useSelector((state) => state.checked);
+  
   const [checked, setChecked] = useState(profile);
+  
   const dispatch = useDispatch(); 
   
 

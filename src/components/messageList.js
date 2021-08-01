@@ -1,15 +1,23 @@
 import React from "react";
 import Message from './message'
-
+import Input  from './input';
 
 
 const MessageList = (props) => {
-    const { messageslist } = props;
-   
+    const { messageslist, send } = props;
+   console.log (messageslist.length)
     return (
-      <div className="messages">
+      <div>
+        <div className="messages">
          <Message messageslist={messageslist}/>
-      </div>
+        </div> 
+        <Input send={
+            ({name, value})=> {
+              send({name:name, value:value})
+            }}
+        />
+      </div> 
+      
     );
   };
 

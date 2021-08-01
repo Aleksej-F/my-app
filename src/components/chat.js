@@ -1,4 +1,3 @@
-import Input  from './input';
 import MessageList  from './messageList';
 import ChatList  from './chatList';
 import { Grid, Paper,} from '@material-ui/core';
@@ -6,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import faker from "faker"
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import {Route} from "react-router-dom";
 import {
    
     useParams
@@ -14,9 +14,10 @@ import {
 
 
 const  Chat  =  (props) => {
+    const {chatlist, sendi, deleteChat, plusChat} = props;
     
-    const  {chatId}  = useParams();
-    const {chatlist, sendi, deleteChat,plusChat} =props;
+    const {chatId}  = useParams();
+   
     const par = parseInt(chatId)>=chatlist.length ? 1 : parseInt(chatId)  
     
     const [messageslist, setMessageslist] = useState(
@@ -74,12 +75,19 @@ const  Chat  =  (props) => {
             </Fab>
         </Grid>
         <Grid item xs={9} >
-            <MessageList messageslist={messageslist}/>   
-            {(!chatId || !chatlist[chatId])?'':<Input send={
-                ({name, value})=> {
-                    send({name:name, value:value, key:par})
-                
-                }}/>}
+            <Route
+                path="/chats/:chatId"
+            >
+                <MessageList messageslist={messageslist}  
+                    send={({name, value})=> {
+                        send({name:name, value:value, key:par})
+                    }}
+                />   
+          </Route>
+            
+            
+           
+           
         </Grid>  
     </Grid>
     );

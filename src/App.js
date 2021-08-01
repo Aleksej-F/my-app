@@ -78,7 +78,7 @@ export default function App() {
           </Route>
    
           <Route
-            path="/chats/:chatId?"
+            path="/chats"
           >
             <Chat chatlist={chatlist} sendi={sendi} deleteChat={deleteChat} plusChat={plusChat}/>
           </Route>
