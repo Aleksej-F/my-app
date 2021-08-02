@@ -6,10 +6,8 @@ import { createSaveProfileAction } from "../store/profile";
 
 const Profile = (props) => {
   
-  const profile = useSelector((state) => state.checked);
-  
-  const [checked, setChecked] = useState(profile);
-  
+  const profile = useSelector((state) => state.profile.checked);
+     
   const dispatch = useDispatch(); 
   
 
@@ -26,8 +24,8 @@ const Profile = (props) => {
             setChecked(!checked);
           }}*/
           onChange={(event) => {
-            console.log('hhh' + checked )
-            console.dir(event.target.checked)
+            console.log('hhh' + profile )
+            
             dispatch(createSaveProfileAction())
           }}
           inputProps={{ 'aria-label': 'primary checkbox' }}
@@ -35,7 +33,7 @@ const Profile = (props) => {
         <br></br>
         <br></br>
         <Button variant="contained" o onClick={() => {
-               console.log('сохраним профиль' + checked)
+               
                 dispatch(createSaveProfileAction());
               }} >Default</Button>
       </div>

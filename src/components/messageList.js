@@ -3,19 +3,14 @@ import Message from './message'
 import Input  from './input';
 
 
-const MessageList = (props) => {
-    const { messageslist, send } = props;
-   console.log (messageslist.length)
+const MessageList = () => {
+   
     return (
       <div>
         <div className="messages">
-         <Message messageslist={messageslist}/>
+         <Message/>
         </div> 
-        <Input send={
-            ({name, value})=> {
-              send({name:name, value:value})
-            }}
-        />
+        <Input/>
       </div> 
       
     );

@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button, Input, Icon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
+import { useSelector, useDispatch } from "react-redux";
+import {createIdMessage,createAddMessage} from "../store/messages"; 
 
 
 
@@ -16,7 +17,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Counter(props) {
-    const {send} = props;
+  const id = useSelector((state) => state.messageList.id); 
+  const dispatch = useDispatch(); 
+  
+  const {send} = props;
     const [value, setValue] = useState('');
     const classes = useStyles();
     const inputRef = useRef(null);
@@ -48,7 +52,7 @@ function Counter(props) {
             className={classes.button}
             endIcon={<Icon>send</Icon>}
             onClick={()=> {
-              send({value:value, name:'Anrej'});
+              dispatch(createAddMessage({id: id, value: value}))
               setValue('');
               inputFocus()
             }}
