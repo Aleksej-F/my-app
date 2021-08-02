@@ -19,11 +19,16 @@ const Profile = (props) => {
             <br></br>
             <br></br>
         <Checkbox
-          checked={checked}
-          onChange={(event) => {
+          checked={ profile}
+         /* onChange={(event) => {
             console.log('hhh' + checked )
             console.dir(event.target.checked)
             setChecked(!checked);
+          }}*/
+          onChange={(event) => {
+            console.log('hhh' + checked )
+            console.dir(event.target.checked)
+            dispatch(createSaveProfileAction())
           }}
           inputProps={{ 'aria-label': 'primary checkbox' }}
         />
@@ -31,7 +36,7 @@ const Profile = (props) => {
         <br></br>
         <Button variant="contained" o onClick={() => {
                console.log('сохраним профиль' + checked)
-                dispatch(createSaveProfileAction(checked));
+                dispatch(createSaveProfileAction());
               }} >Default</Button>
       </div>
     

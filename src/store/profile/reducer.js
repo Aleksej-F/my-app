@@ -12,8 +12,8 @@ export const profileReducer = (state = profileInitialState, action) => {
     switch (action.type) {
         case SAVE_PROFILE_ACTION: {
             return {
-               // ...state,
-                checked: action.payload
+                ...state,
+                checked: !state.checked
             }
         }
        
