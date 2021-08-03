@@ -2,11 +2,11 @@ import React,{ useState } from "react";
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import { useSelector, useDispatch } from "react-redux";
-import { createSaveProfileAction } from "../store/profile";
+import { createSaveProfileAction, getProfaileChecked } from "../store/profile";
 
 const Profile = (props) => {
   
-  const profile = useSelector((state) => state.profile.checked);
+  const profile = useSelector(getProfaileChecked);
      
   const dispatch = useDispatch(); 
   

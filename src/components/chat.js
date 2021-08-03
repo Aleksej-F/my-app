@@ -6,19 +6,13 @@ import React, { useState, useEffect } from "react";
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import {Route} from "react-router-dom";
-import {useParams} from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
   import { createAddChat} from "../store/chats";
 
 
 const  Chat  =  () => {
     const dispatch = useDispatch();
-
-    const {chatId}  = useParams();
-  
-    console.log ('chatId - ' + chatId)
-    
-        
+     
     return (
 
     <Grid container spacing={3}>
@@ -37,10 +31,7 @@ const  Chat  =  () => {
             >
                 <MessageList/>   
           </Route>
-            
-            
-           
-           
+         
         </Grid>  
     </Grid>
     );

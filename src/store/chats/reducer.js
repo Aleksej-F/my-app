@@ -1,4 +1,4 @@
-import {ADD_CHAT, REMOVE_CHAT} from "./actions";
+import {ADD_CHAT, REMOVE_CHAT, ACTIVE_CHAT} from "./actions";
 import faker from "faker"
 
 const chat = function() {
@@ -29,7 +29,14 @@ export const chatsReducer = (state = chatsInitialState, action) => {
                 list: state.list.filter(word => word.id!==action.payload)
             }
         }
-       
+        case ACTIVE_CHAT: {
+            console.log(action.payload)
+            console.log(state.list[action.payload])
+            return {
+                ...state,
+                 
+            }
+        }
         default:{
             return state;
         }

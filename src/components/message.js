@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { createAddMessage} from "../store/messages";
+import { createAddMessage,getMessageListId} from "../store/messages";
 
 const Message = (props) => {
-    const id = useSelector((state) => state.messageList.id);
+    const id = useSelector(getMessageListId);
     console.log(id)
     const messageslist = useSelector((state) => id === '' ? [] : 
             state.messageList.list[id] ? state.messageList.list[id]:[]);

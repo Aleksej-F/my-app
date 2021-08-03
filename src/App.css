@@ -100,11 +100,14 @@
   transition: all 0.7s ease-out;
 }
 
-.active{
+.chat .active{
   background-color: #88e995;
  
 }
-
+.chat_bloc{
+  display: flex;
+  width: 230px;
+}
 .contMess{
  
 }
