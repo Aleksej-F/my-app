@@ -99,15 +99,11 @@
   cursor: pointer;
   transition: all 0.7s ease-out;
 }
-
-.chat .active{
-  background-color: #88e995;
- 
+a.chat_link:active{
+  background-color: #24e03d;
 }
+
 .chat_bloc{
   display: flex;
   width: 230px;
-}
-.contMess{
- 
 }
