@@ -1,13 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect,useCallback  } from "react";
 import { Button, Input, Icon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSelector, useDispatch } from "react-redux";
-import {createIdMessage, createAddMessage, getMessageListId} from "../store/messages"; 
-
-
-
-
-
+import { useSelector, useDispatch} from "react-redux";
+import {createAddMessage, getMessageListId} from "../store/messages"; 
+import { getProfaileChecked} from "../store/profile";
+import generateBotPhrase from "./bot/botPhrase"
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
@@ -17,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Counter(props) {
-  const id = useSelector(getMessageListId); 
+  const chatid = useSelector(getMessageListId); 
+  const profile = useSelector(getProfaileChecked);
   const dispatch = useDispatch(); 
   
     
@@ -37,6 +35,22 @@ function Counter(props) {
       inputRef.current?.focus();
     }
      
+    
+    const addMessageWithThunk = ({id, message}) => (dispatch, getState) => {
+      dispatch(createAddMessage({id, message}));
+      if (message.author !== 'Bot') {
+       
+        const botMessage = generateBotPhrase();
+         setTimeout(() => dispatch(createAddMessage({id, message:{value:botMessage, author: 'Bot'}})), 2000);
+      }
+    }
+
+
+    const onAddMessage = useCallback((message) => {
+       dispatch(addMessageWithThunk({id:chatid, message:message}));
+    }, [chatid, dispatch]);
+    
+
     return (
       <div>
           <Input 
@@ -52,7 +66,7 @@ function Counter(props) {
             className={classes.button}
             endIcon={<Icon>send</Icon>}
             onClick={()=> {
-              dispatch(createAddMessage({id: id, value: value}))
+              onAddMessage({value:value, author: profile.nick})
               setValue('');
               inputFocus()
             }}

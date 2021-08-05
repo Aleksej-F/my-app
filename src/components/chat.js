@@ -1,7 +1,7 @@
 import MessageList  from './messageList';
 import ChatList  from './chatList';
 import { Grid, Paper,} from '@material-ui/core';
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';

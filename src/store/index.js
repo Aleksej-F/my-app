@@ -8,21 +8,20 @@ import storage from 'redux-persist/lib/storage'; // localStorage
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const persistConfig = {
-    key: 'root',
-    storage,
-  }
-  
-
 const rootReducer = combineReducers({
     profile:profileReducer,
     chats:chatsReducer,
     messageList:messagesReducer,
 })
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const loggerMiddeleware = (store) => (dispatch) => (action) =>{
-    console.log('loger  ', store, dispatch, action )
+    //console.log('loger  ', store, dispatch, action )
     return dispatch(action)
 }
 /*
@@ -36,21 +35,13 @@ const middleware = store => next => (action) => {
     return next(action)
 }
 */
-/*
-const addMessageWithThunk = (chatId, message) => (dispatch, getState) => {
-    dispatch(addMessage(chatId, message));
-    if (message.author !== AUTHORS.BOT) {
-       const botMessage = {' ... '};
-       setTimeout(() => dispatch(addMessage(chatId, botMessage)), 2000);
-    }
-  }
-*/
+
 
 
 
 export const store = createStore(
     persistedReducer,
-    composeEnhancers(applyMiddleware(thunk)),
+    composeEnhancers(applyMiddleware(loggerMiddeleware,thunk)),
    
 );
 
