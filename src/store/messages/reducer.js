@@ -2,7 +2,7 @@ import {ADD_MESSAGE, ID_CHAT_MESSAGE} from "./actions";
 import {chatsInitialState} from "../chats"
 import faker from "faker"
 
-console.log(chatsInitialState.list)
+//console.log(chatsInitialState.list)
 
 const message = function() {
     return {
@@ -10,14 +10,15 @@ const message = function() {
         author: faker.name.findName(), 
         text: faker.lorem.text()
     }
-  }
-  const message1 = function(value) {
+}
+
+const message1 = function(value, author) {
     return {
         id: faker.datatype.uuid(),
-        author: faker.name.findName(), 
+        author: author, 
         text: value
     }
-  }
+}
 
 
 const messageList = function() {
@@ -27,10 +28,12 @@ const messageList = function() {
     }
     return mess
 }
-console.log(messageList())
+
+//console.log(messageList())
 export const messagesInitialState = {
     list: messageList(),
-    id:''
+    id:'',
+   
 }
 
 
@@ -39,20 +42,19 @@ export const messagesReducer = (state = messagesInitialState, action) => {
     
     switch (action.type) {
         case ADD_MESSAGE: {
-            console.log(state.list[action.payload.id])
+            
             const currentList = state.list[action.payload.id] || [];
-            console.log(currentList)
-           // state.list[action.payload.id].push(message1(action.payload.value))
+           
             return {
                 ...state,
                 list: {
                     ...state.list,
                     [action.payload.id]:[
                         ...currentList,
-                        message1(action.payload.value)
+                        message1(action.payload.message.value, action.payload.message.author)
                     ]
                 }
-               // list[action.payload.id].concat(message1(action.payload.value))
+               
             }
         }
         

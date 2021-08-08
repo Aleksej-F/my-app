@@ -1,13 +1,13 @@
 import MessageList  from './messageList';
 import ChatList  from './chatList';
 import { Grid, Paper,} from '@material-ui/core';
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import {Route} from "react-router-dom";
 import { useDispatch } from "react-redux";
-  import { createAddChat} from "../store/chats";
+import { createAddChat} from "../store/chats";
 
 
 const  Chat  =  () => {
@@ -17,7 +17,6 @@ const  Chat  =  () => {
 
     <Grid container spacing={3}>
         <Grid item xs={3}>
-            
             <Paper>
                 <ChatList />
             </Paper>
