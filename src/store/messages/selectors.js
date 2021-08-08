@@ -1,0 +1,1 @@
+export const getMessageListId =(state) => state.messageList.id;

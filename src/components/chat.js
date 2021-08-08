@@ -1,73 +1,37 @@
-import Input  from './input';
 import MessageList  from './messageList';
 import ChatList  from './chatList';
 import { Grid, Paper,} from '@material-ui/core';
 import React, { useState, useEffect } from "react";
 
-import {
-   
-    useParams
-  } from "react-router-dom";
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import {Route} from "react-router-dom";
+import { useDispatch } from "react-redux";
+  import { createAddChat} from "../store/chats";
 
 
-
-
-
-const  Chat  =  (props) => {
-    const  {chatId}  = useParams();
-    const {chatlist} =props;
-    const par = parseInt(chatId)>=chatlist.length ? 1 : parseInt(chatId)  
-    const [messageslist, setMessageslist] = useState(
-        (!chatId || !chatlist[chatId])?[]:(chatlist[par].messageslist)
-        );
-    
-    console.log ('chatId - ' + chatId + '     '+  par)
-    
-    console.log ('messageslist - ' + messageslist)
-    
-    const setMessagesList = function (key) {
-        setMessageslist(chatlist[key].messageslist) 
-    }
-    
-
-    const send = function ({value, name}) {
-    
-        let message = { author: name, text: value}
-        setMessageslist(messageslist.concat(message))
-    
-    }; 
-  
-    useEffect(() => {
-    
-        if (messageslist.length > 5) {
-      
-            if (messageslist[messageslist.length-1].author !== 'Bot'){
-                let mes = {name: 'Bot',value: 'привет'};
-                setTimeout(() => {
-                send (mes)
-                }, 2000);
-                
-            }
-        }
-    
-    },[messageslist]);
-
-    /*
-    if (parseInt(chatId) >= chatlist.length) {
-        return null
-    } */
-
+const  Chat  =  () => {
+    const dispatch = useDispatch();
+     
     return (
 
     <Grid container spacing={3}>
         <Grid item xs={3}>
+            
             <Paper>
-                <ChatList chatlist={chatlist} setMessagesList = {setMessagesList }/>
+                <ChatList />
             </Paper>
+            <Fab onClick={()=>{dispatch(createAddChat())}} color="primary" aria-label="add">
+                <AddIcon />
+            </Fab>
         </Grid>
-        <Grid item xs={9}>
-            <MessageList messageslist={messageslist}/>   
-            {(!chatId || !chatlist[chatId])?'':<Input send={send}/>}
+        <Grid item xs={9} >
+            <Route
+                path="/chats/:chatId"
+            >
+                <MessageList/>   
+          </Route>
+         
         </Grid>  
     </Grid>
     );

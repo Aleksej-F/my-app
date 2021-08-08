@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button, Input, Icon } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
+import { useSelector, useDispatch } from "react-redux";
+import {createIdMessage,createAddMessage,getMessageListId} from "../store/messages"; 
 
 
 
@@ -16,7 +17,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Counter(props) {
-    const {send} = props;
+  const id = useSelector(getMessageListId); 
+  const dispatch = useDispatch(); 
+  
+    
     const [value, setValue] = useState('');
     const classes = useStyles();
     const inputRef = useRef(null);
@@ -32,17 +36,15 @@ function Counter(props) {
     const inputFocus = () => {
       inputRef.current?.focus();
     }
-     //<input type="text" value={value} onChange={handleChange} />
+     
     return (
       <div>
-       
-          
           <Input 
-            
             placeholder="Введите сообщение" 
             inputProps={{ 'aria-label':'description'}} 
             inputRef={inputRef}
-            value={value} onChange={handleChange}/>
+            value={value} onChange={handleChange}
+          />
            
           <Button
             variant="contained"
@@ -50,7 +52,7 @@ function Counter(props) {
             className={classes.button}
             endIcon={<Icon>send</Icon>}
             onClick={()=> {
-              send({value:value, name:'Anrej'});
+              dispatch(createAddMessage({id: id, value: value}))
               setValue('');
               inputFocus()
             }}
