@@ -11,6 +11,8 @@ import Home  from '../../components/home';
 import Profile from '../../components/profile';
 import GistsList from '../../components/gistsList'
 import GistsList2 from '../../components/gistsList2'
+import Login  from '../Login';
+import SignUp  from '../SignUp';
 
 export const Routes  = (props) => {
   const [auth, setAuth] = useState(false);
@@ -50,6 +52,12 @@ return (
     </Route>
     <Route path="/gists2">
       <GistsList2 />
+    </Route>
+    <Route exact path="/login">
+      <Login />
+    </Route>
+    <Route exact path="/signup">
+      <SignUp />
     </Route>
 
     <Route>

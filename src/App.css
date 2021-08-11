@@ -99,7 +99,10 @@
   cursor: pointer;
   transition: all 0.7s ease-out;
 }
-a.chat_link:active{
+.chat_link:active {
+  background-color: #d16a09;
+}
+.chats_list > a:active{
   background-color: #24e03d;
 }
 

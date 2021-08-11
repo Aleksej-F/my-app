@@ -14,10 +14,11 @@ export default function Chatlist (props) {
     const dispatch = useDispatch(); 
     
     return (
-        <List>
+        <List className="chats_list">
             {
             chatlist.map((item, keyi) => (
-                <Link to={`/chats/${keyi}`} key={item.id} className = 'chat_link'>
+                <Link to={`/chats/${keyi}`} key={item.id} >
+                    <div className = "chat_link">
                     <ListItem  className = {item.prizn ?'chat active':'chat'} >
                         <div className = 'chat_bloc' onClick={()=> {
                             dispatch(createIdMessage(item.id))
@@ -38,6 +39,7 @@ export default function Chatlist (props) {
                             </IconButton>
                         </Link>
                     </ListItem>
+                    </div>
                 </Link>
             ))
             }
