@@ -4,13 +4,13 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import {Link} from "react-router-dom";            
 import {useSelector, useDispatch} from "react-redux";
-import {createRemoveChat, getChatlist} from "../store/chats";           
+import {createRemoveChat, getChatList} from "../store/chats";           
 import {createIdMessage} from "../store/messages"; 
 
 
 export default function Chatlist (props) {
          
-    const chatlist = useSelector( getChatlist );
+    const chatlist = useSelector( getChatList );
     const dispatch = useDispatch(); 
     
     return (
@@ -20,9 +20,7 @@ export default function Chatlist (props) {
                 <Link to={`/chats/${keyi}`} key={item.id} >
                     <div className = "chat_link">
                     <ListItem  className = {item.prizn ?'chat active':'chat'} >
-                        <div className = 'chat_bloc' onClick={()=> {
-                            dispatch(createIdMessage(item.id))
-                        }}>     
+                        <div className = 'chat_bloc' >     
                             <ListItemAvatar >
                                 <Avatar alt={item.name} src={item.avatar}/>
                             </ListItemAvatar>

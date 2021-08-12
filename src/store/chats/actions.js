@@ -14,7 +14,7 @@ export const createRemoveChat = (id) => ({
 })
 
 export const createChoosingChat = (id) => ({
-    type: REMOVE_CHAT,
+    type: CHOOSING_A_CHAT,
     payload:id
 })
 

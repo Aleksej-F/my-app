@@ -1,9 +1,10 @@
-import {ADD_MESSAGE, ID_CHAT_MESSAGE} from "./actions";
+import {ADD_MESSAGE, ID_CHAT_MESSAGE, CHANGE_MESSAGES } from "./actions";
 import {chatsInitialState} from "../chats"
 import faker from "faker"
 
-//console.log(chatsInitialState.list)
 
+/* 
+//для localstorage
 const message = function() {
     return {
         id: faker.datatype.uuid(),
@@ -20,7 +21,6 @@ const message1 = function(value, author) {
     }
 }
 
-
 const messageList = function() {
     const mess = {}
     for (let i = 0; i < (chatsInitialState.list.length); i++) {
@@ -29,22 +29,23 @@ const messageList = function() {
     return mess
 }
 
-//console.log(messageList())
 export const messagesInitialState = {
     list: messageList(),
     id:'',
    
 }
-
-
-   
+*/
+const messagesInitialState = {
+    messages: {},
+    id:""
+  };
+  
 export const messagesReducer = (state = messagesInitialState, action) => {
     
     switch (action.type) {
+        /*
         case ADD_MESSAGE: {
-            
             const currentList = state.list[action.payload.id] || [];
-           
             return {
                 ...state,
                 list: {
@@ -54,17 +55,26 @@ export const messagesReducer = (state = messagesInitialState, action) => {
                         message1(action.payload.message.value, action.payload.message.author)
                     ]
                 }
-               
             }
         }
-        
+         */
         case ID_CHAT_MESSAGE: {
             return {
                     ...state,
                     id: action.payload
                 }
             }
-       
+      
+        case CHANGE_MESSAGES: {
+            return {
+                ...state,
+                messages: {
+                    ...state.messages,
+                    [action.payload.chatId]: action.payload.messages,
+                  },
+                };
+              }
+          
         default:{
             return state;
         }

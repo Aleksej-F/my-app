@@ -1,1 +1,1 @@
-export const getMessageListId =(state) => state.messageList.id;
+export const getMessageListId =(state) => state.messages.id;
