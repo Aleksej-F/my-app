@@ -22,12 +22,7 @@ export const Layout = ({children}) => {
               <li>
                 <Link to="/gists2">Gists2</Link>
               </li>
-              <li>
-               <Link to="/signup">Registration</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
+              
 
         </ul>
       </header>

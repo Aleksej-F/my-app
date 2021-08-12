@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Checkbox from '@material-ui/core/Checkbox';
-import { Button, Input, Icon } from '@material-ui/core';
+import { Button, Input } from '@material-ui/core';
 import { useSelector, useDispatch } from "react-redux";
 import { createSaveProfileAction, getProfaileChecked, createSaveProfileCheckendAction } from "../store/profile";
 

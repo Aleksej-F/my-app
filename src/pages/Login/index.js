@@ -53,7 +53,7 @@ import firebase from 'firebase';
         </div>
         <hr/>
         <p>
-          Already have an account? <Link to="/login">Sign in</Link>
+          Don't have an account? <Link to="/signup">Sign up</Link>
         </p>
       </form>
     </div>

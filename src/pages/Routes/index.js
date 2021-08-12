@@ -3,8 +3,8 @@ import {Route, Switch} from "react-router-dom";
 import firebase from "firebase";
 
 
-//import {PublicRoute} from "../../hocs/PublicRoute";
-//import {PrivateRoute} from "../../hocs/PrivateRoute";
+import {PublicRoute} from "../../hocs/PublicRoute";
+import {PrivateRoute} from "../../hocs/PrivateRoute";
 
 import Chat  from '../../components/chat';
 import Home  from '../../components/home';
@@ -16,10 +16,11 @@ import SignUp  from '../SignUp';
 
 export const Routes  = (props) => {
   const [auth, setAuth] = useState(false);
-/*
+  console.log(auth)
   useEffect(() => {
 
     firebase.auth().onAuthStateChanged((user) => {
+      console.log(user,auth)
       if (user) {
         setAuth(true);
       } else {
@@ -27,39 +28,34 @@ export const Routes  = (props) => {
       }
     })
 
-  }, [])*/
+  }, [])
 
 return (
   
          
   <Switch>
    
-    <Route path="/profile">
+    <PrivateRoute auth={auth} exact path="/profile">
       <Profile />
-    </Route>
-
-    <Route
-      path="/chats"
-    >
+    </PrivateRoute>
+    <PrivateRoute auth={auth} exact path="/chats/:chatId?" >
       <Chat />
-    </Route>
-
-    <Route exact path="/">
+    </PrivateRoute>
+    <PublicRoute exact path="/">
       <Home />
-    </Route>
+    </PublicRoute>
     <Route path="/gists">
       <GistsList />
     </Route>
     <Route path="/gists2">
       <GistsList2 />
     </Route>
-    <Route exact path="/login">
+    <PublicRoute auth={auth} exact path="/login">
       <Login />
-    </Route>
-    <Route exact path="/signup">
+    </PublicRoute>
+    <PublicRoute auth={auth} exact path="/signup">
       <SignUp />
-    </Route>
-
+    </PublicRoute>
     <Route>
       <h3>Page not found</h3>
     </Route>
@@ -69,30 +65,4 @@ return (
 )
 
 
-/*
-  return (
-    <Switch>
-      <PublicRoute auth={auth} exact path="/">
-        <Home />
-      </PublicRoute>
-      <PublicRoute auth={auth} exact path="/login">
-        <Login />
-      </PublicRoute>
-      <PublicRoute auth={auth} exact path="/signup">
-        <SignUp />
-      </PublicRoute>
-      <Route exact path="/posts">
-        <Posts />
-      </Route>
-      <Route path="/posts/:postId">
-        <Post />
-      </Route>
-      <PrivateRoute auth={auth} exact path="/createPost">
-        <CreatePost />
-      </PrivateRoute>
-      <PrivateRoute auth={auth} path="/profile">
-        <Profile />
-      </PrivateRoute>
-    </Switch>
-  );*/
 };

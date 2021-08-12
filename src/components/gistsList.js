@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback } from "react";
+import React from "react";
 import {postsApi} from "../api";
 import {useRequestApi} from "../hooks/api/useRequestApi";
 import { CircularProgress } from '@material-ui/core';
@@ -10,14 +10,14 @@ const GistsList = () => {
         api: postsApi.getPosts,
         isAutoRun: true
       })
-    
+    /*
       const  getPostState = useRequestApi({
         api: postsApi.getPost,
       })
       const  getCommentsState = useRequestApi({
         api: postsApi.getComments,
       })
-    
+    */
 
 
 
