@@ -18,7 +18,6 @@ export const CHANGE_MESSAGES = 'CHANGE_MESSAGES';
 
 const getPayloadFromSnapshot = (snapshot) => {
     const messages = [];
-  
     snapshot.forEach((mes) => {
       messages.push(mes.val());
     });
@@ -27,12 +26,14 @@ const getPayloadFromSnapshot = (snapshot) => {
   }
   
   export const addMessageWithFirebase = (chatId, message) => async () => {
+   
     db.ref("messages").child(chatId).child(message.id).set(message);
   };
   
   export const initMessageTracking = () => (dispatch) => {
     db.ref("messages").on("child_changed", (snapshot) => {
       const payload = getPayloadFromSnapshot(snapshot);
+      
       dispatch({
         type: CHANGE_MESSAGES,
         payload,

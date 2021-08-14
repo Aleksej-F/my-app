@@ -15,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Counter(props) {
-  //const chatId = useSelector(getMessageListId); 
-  const { chatId } = useParams();
+  const chatId = useSelector(getMessageListId); 
+  //const { chatId } = useParams();
   const profile = useSelector(getProfaileChecked);
   const dispatch = useDispatch(); 
   
@@ -24,7 +24,7 @@ function Counter(props) {
     const [value, setValue] = useState('');
     const classes = useStyles();
     const inputRef = useRef(null);
-
+    //ввод инпут
     const handleChange = (event) => {
       setValue(event.target.value);
     }
@@ -37,36 +37,35 @@ function Counter(props) {
       inputRef.current?.focus();
     }
      
-    /*
-    const addMessageWithThunk = ({id, message}) => (dispatch, getState) => {
-      dispatch(createAddMessage({id, message}));
+    
+    const addMessageWithThunk = ( message ) => (dispatch, getState) => {
+      dispatch(
+        addMessageWithFirebase(chatId, {
+          ...message,
+          id: `${chatId}-${Date.now()}`,
+        })
+      
+      );
+      
       if (message.author !== 'Bot') {
        
         const botMessage = generateBotPhrase();
-         setTimeout(() => dispatch(createAddMessage({id, message:{value:botMessage, author: 'Bot'}})), 2000);
+         setTimeout(() => dispatch(
+          addMessageWithFirebase(chatId, {
+            message:botMessage,
+            id: `${chatId}-${Date.now()}`,
+            author: 'Bot'
+          })
+            
+          ), 2000);
       }
     }
-*/
-    const onAddMessage = useCallback(
-      ({message}) => {
-        console.log('chatId', chatId)
-        dispatch(
-          
-          addMessageWithFirebase(chatId, {
-            ...message,
-            id: `${chatId}-${Date.now()}`,
-          })
-        );
-  
-      },
-      [chatId]
-    );
 
-/*
+
     const onAddMessage = useCallback((message) => {
-       dispatch(addMessageWithThunk({id:chatid, message:message}));
-    }, [chatid, dispatch]);
-    */
+       dispatch(addMessageWithThunk( message))
+    }, [chatId]);
+    
 
     return (
       <div>
@@ -90,9 +89,7 @@ function Counter(props) {
           >
             Send
           </Button>        
-         
-             
-       
+      
       </div>
     )
 }

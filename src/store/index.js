@@ -42,7 +42,7 @@ const middleware = store => next => (action) => {
 
 
 export const store = createStore(
-    persistedReducer,
+    rootReducer,
     composeEnhancers(applyMiddleware(loggerMiddeleware,thunk)),
    
 );

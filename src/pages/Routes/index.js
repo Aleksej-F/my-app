@@ -16,7 +16,7 @@ import SignUp  from '../SignUp';
 
 export const Routes  = (props) => {
   const [auth, setAuth] = useState(false);
-  console.log(auth)
+  
   useEffect(() => {
 
     firebase.auth().onAuthStateChanged((user) => {

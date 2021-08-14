@@ -13,11 +13,11 @@ import {BrowserRouter} from "react-router-dom";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate persistor={persistor} loading={null}>
+      
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </PersistGate>
+      
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
