@@ -1,17 +1,7 @@
 import {ADD_CHAT, REMOVE_CHAT, ACTIVE_CHAT} from "./actions";
-import faker from "faker"
-
-const chat = function() {
-    return {
-    id: faker.datatype.uuid(),
-    avatar: faker.image.avatar(),
-    name: faker.name.findName(),
-    priz: false,
-    }
-  }
 
 export const chatsInitialState = {
-    list: Array.from({length:10}).map(()=>chat())
+    list: {}
 }
    
 export const chatsReducer = (state = chatsInitialState, action) => {
@@ -20,8 +10,9 @@ export const chatsReducer = (state = chatsInitialState, action) => {
         case ADD_CHAT: {
             return {
                 ...state,
-                list: state.list.concat(chat())
-            }
+                list: action.payload.chats
+            }   
+            
         }
         case REMOVE_CHAT: {
             return {
@@ -30,11 +21,8 @@ export const chatsReducer = (state = chatsInitialState, action) => {
             }
         }
         case ACTIVE_CHAT: {
-            console.log(action.payload)
-            console.log(state.list[action.payload])
             return {
                 ...state,
-                 
             }
         }
         default:{

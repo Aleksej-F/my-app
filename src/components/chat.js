@@ -1,5 +1,5 @@
 import MessageList  from './messageList';
-import ChatList  from './chatList';
+import ChatList  from './chatListFild';
 import { Grid, Paper,} from '@material-ui/core';
 import React from "react";
 
@@ -20,7 +20,11 @@ const  Chat  =  () => {
             <Paper>
                 <ChatList />
             </Paper>
-            <Fab onClick={()=>{dispatch(createAddChat())}} color="primary" aria-label="add">
+            <Fab onClick={()=>{
+                console.log('добавить чат')
+                dispatch(createAddChat())
+
+                }} color="primary" aria-label="add">
                 <AddIcon />
             </Fab>
         </Grid>
@@ -29,7 +33,7 @@ const  Chat  =  () => {
                 path="/chats/:chatId"
             >
                 <MessageList/>   
-          </Route>
+            </Route>
          
         </Grid>  
     </Grid>
