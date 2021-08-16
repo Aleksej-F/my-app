@@ -22,11 +22,11 @@ export default function Chatlist (props) {
                         <div className = 'chat_bloc' onClick={()=> {
                             dispatch(createIdMessage(item.id))
                         }}>     
-                        <ListItemAvatar >
-                            <Avatar alt={item.name} src={item.avatar}/>
-                        </ListItemAvatar>
-                        
-                        <ListItemText primary={item.name}/>
+                            <ListItemAvatar >
+                                <Avatar alt={item.name} src={item.avatar}/>
+                            </ListItemAvatar>
+                            
+                            <ListItemText primary={item.name}/>
                         </div>
                         <Link to={`/chats`} >
                             <IconButton id={item.id}  aria-label="delete">

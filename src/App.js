@@ -5,7 +5,8 @@ import Home  from './components/home';
 import Profile from './components/profile';
 import {BrowserRouter,Switch,Route,Link} from "react-router-dom";
 
-
+import GistsList from './components/gistsList'
+import GistsList2 from './components/gistsList2'
 
 
 
@@ -20,15 +21,18 @@ export default function App() {
               <li>
                 <Link to="/">Home</Link>
               </li>
-              
-
               <li>
                 <Link to="/chats">Chats</Link>
               </li>
               <li>
                 <Link to="/profile">Profile</Link>
               </li>
-              
+              <li>
+                <Link to="/gists">Gists</Link>
+              </li>
+              <li>
+                <Link to="/gists2">Gists2</Link>
+              </li>
             </ul>
         </header>
 
@@ -47,6 +51,12 @@ export default function App() {
 
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route path="/gists">
+            <GistsList />
+          </Route>
+          <Route path="/gists2">
+            <GistsList2 />
           </Route>
 
           <Route>
