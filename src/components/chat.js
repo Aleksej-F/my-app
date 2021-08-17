@@ -14,7 +14,7 @@ export const ChatTestIds = {
     
   }
 
-const  Chat  =  () => {
+const  Chat  =  ({onClick}) => {
     const dispatch = useDispatch();
      
     return (
@@ -25,10 +25,8 @@ const  Chat  =  () => {
                 <ChatList />
             </Paper>
             <Fab onClick={()=>{
-                console.log('добавить чат')
-                dispatch(createAddChat())
-                
-
+                    console.log('добавить чат')
+                    dispatch(createAddChat())
                 }} color="primary" 
                 aria-label="add"
                 data-testid={ChatTestIds.createAddChat}
