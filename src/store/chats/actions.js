@@ -6,7 +6,7 @@ export const REMOVE_CHAT = 'REMOVE_CHAT';
 export const CHOOSING_A_CHAT = 'CHOOSING_A_CHAT';
 export const ACTIVE_CHAT = 'ACTIVE_CHAT';
 
-const chat = function() {
+export const chat = function() {
     return {
     id: faker.datatype.uuid(),
     avatar: faker.image.avatar(),
