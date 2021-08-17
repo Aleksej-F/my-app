@@ -9,8 +9,12 @@ import {Route} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createAddChat} from "../store/chats";
 
+export const ChatTestIds = {
+    createAddChat: 'Chat-createAddChat',
+    
+  }
 
-const  Chat  =  () => {
+const  Chat  =  ({onClick}) => {
     const dispatch = useDispatch();
      
     return (
@@ -21,10 +25,12 @@ const  Chat  =  () => {
                 <ChatList />
             </Paper>
             <Fab onClick={()=>{
-                console.log('добавить чат')
-                dispatch(createAddChat())
-
-                }} color="primary" aria-label="add">
+                    console.log('добавить чат')
+                    dispatch(createAddChat())
+                }} color="primary" 
+                aria-label="add"
+                data-testid={ChatTestIds.createAddChat}
+            >
                 <AddIcon />
             </Fab>
         </Grid>
